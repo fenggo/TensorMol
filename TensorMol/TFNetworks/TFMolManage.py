@@ -1402,7 +1402,7 @@ class TFMolManage(TFManage):
 		t = time.time()
 		if (DoForce):
 			Etotal, Ebp, Ebp_atom, gradient  = self.Instances.evaluate_periodic([xyzs, Zs, dummy_energy, dummy_grads, rad_p_ele, ang_t_elep, mil_j, mil_jk, 1.0/natom], nreal)
-			#print ("tf code time:", time.time() - t)
+			return Etotal, -JOULEPERHARTREE*gradient[0][0][:nreal].reshape(1, nreal, 3) 
 		else:
 			Etotal = self.Instances.evaluate_periodic([xyzs, Zs, dummy_energy, dummy_grads, rad_p_ele, ang_t_elep,  mil_j, mil_jk, 1.0/natom], nreal, False)
 			return Etotal
