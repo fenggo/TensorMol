@@ -561,7 +561,7 @@ class MolInstance_DirectBP_EandG_SymFunction(MolInstance_fc_sqdiff_BP):
 					output = tf.add(output, ToAdd)
 				tf.verify_tensor_all_finite(output,"Nan in output!!!")
 			bp_energy = tf.reshape(tf.reduce_sum(output, axis=1), [self.batch_size])
-		total_energy = tf.identity(bp_energy, cc_energy)
+		total_energy = tf.identity(bp_energy)
 		return total_energy, bp_energy, output
 
 
