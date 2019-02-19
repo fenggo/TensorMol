@@ -108,7 +108,8 @@ class MolInstance(Instance):
 		self.Clean()
 		self.__dict__.update(tmp)
 		# Simple hack to fix checkpoint path.
-		self.chk_file=self.chk_file.replace("./networks/",PARAMS["networks_directory"])
+		# self.chk_file=self.chk_file.replace("./networks/",PARAMS["networks_directory"])
+		self.chk_file=tf.train.latest_checkpoint(self.train_dir)
 		print("self.chk_file:", self.chk_file)
 		return
 
